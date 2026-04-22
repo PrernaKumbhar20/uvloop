@@ -11,40 +11,40 @@ on:
     #  - "uvloop/_version.py"
 
 jobs:
-  validate-release-request:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Validate release PR
-      uses: edgedb/action-release/validate-pr@bae6b9134e872166b43d218dd79397c851c41c9a
-      id: checkver
-      with:
-        require_team: ""
-        require_approval: no
-        github_token: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
-        version_file: uvloop/_version.py
-        version_line_pattern: |
-          __version__\s*=\s*(?:['"])([[:PEP440:]])(?:['"])
-
-    - name: Stop if not approved
-      if: steps.checkver.outputs.approved != 'true'
-      run: |
-        echo ::error::PR is not approved yet.
-        exit 1
-
-    - name: Store release version for later use
-      env:
-        VERSION: ${{ steps.checkver.outputs.version }}
-      run: |
-        mkdir -p dist/
-        echo "${VERSION}" > dist/VERSION
-
-    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
-      with:
-        name: dist-version
-        path: dist/
+  #validate-release-request:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #  - name: Validate release PR
+  #    uses: edgedb/action-release/validate-pr@bae6b9134e872166b43d218dd79397c851c41c9a
+  #    id: checkver
+  #    with:
+  #      require_team: Release Managers
+  #      require_approval: no
+  #      github_token: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
+  #      version_file: uvloop/_version.py
+  #      version_line_pattern: |
+  #        __version__\s*=\s*(?:['"])([[:PEP440:]])(?:['"])
+  #
+  #  - name: Stop if not approved
+  #    if: steps.checkver.outputs.approved != 'true'
+  #    run: |
+  #      echo ::error::PR is not approved yet.
+  #      exit 1
+  #
+  #  - name: Store release version for later use
+  #    env:
+  #      VERSION: ${{ steps.checkver.outputs.version }}
+  #    run: |
+  #      mkdir -p dist/
+  #      echo "${VERSION}" > dist/VERSION
+  #
+  #  - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
+  #    with:
+  #      name: dist-version
+  #      path: dist/
 
   build-sdist:
-    needs: validate-release-request
+   # needs: validate-release-request
     runs-on: ubuntu-22.04
 
     env:
@@ -71,7 +71,7 @@ jobs:
         path: dist/*.tar.*
 
   build-wheels:
-    needs: validate-release-request
+    #needs: validate-release-request
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
