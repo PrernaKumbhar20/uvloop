@@ -62,7 +62,8 @@ jobs:
 
     - name: Build source distribution
       run: |
-        python -m pip install --upgrade pip setuptools wheel  
+        python -m pip install --upgrade pip 
+        python -m pip install "setuptools<70" wheel  
         python setup.py sdist 
 
     - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
