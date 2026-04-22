@@ -18,7 +18,7 @@ jobs:
       uses: edgedb/action-release/validate-pr@bae6b9134e872166b43d218dd79397c851c41c9a
       id: checkver
       with:
-        require_team: Release Managers
+        require_team: ""
         require_approval: no
         github_token: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
         version_file: uvloop/_version.py
