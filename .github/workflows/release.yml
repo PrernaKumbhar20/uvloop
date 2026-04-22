@@ -125,13 +125,14 @@ jobs:
         CIBW_BUILD: ${{ matrix.python }}-*
         CIBW_ARCHS: ${{ matrix.cibw_arch }}
         CIBW_TEST_SKIP: "*universal2:arm64"
+
     - if: ${{ matrix.os == 'self-hosted' }}
-        name: Set up Python (self-hosted)
-        uses: IBM/setup-python-pz@4ca38bfac8eac147e9c7aad9ab246f68655afb36
-        with:
-          python-version: 3.11
-          architecture: ppc64le
-          
+      name: Set up Python (self-hosted)
+      uses: IBM/setup-python-pz@4ca38bfac8eac147e9c7aad9ab246f68655afb36
+      with:
+        python-version: 3.11
+        architecture: ppc64le
+
     - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
       with:
         name: dist-wheels-${{ matrix.os }}-${{ matrix.python }}-${{ matrix.cibw_arch }}
