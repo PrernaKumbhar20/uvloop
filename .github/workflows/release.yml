@@ -137,7 +137,7 @@ jobs:
     - if: ${{ matrix.os == 'self-hosted' }}
       name: Build wheels (self-hosted ppc64le)
       run: |
-        python3 -m pip install cibuildwheel
+        python3 -m pip install setuptools cibuildwheel 
         python3 -m cibuildwheel --output-dir wheelhouse
       env:
         CIBW_BUILD_VERBOSITY: 1
