@@ -149,14 +149,16 @@ jobs:
     - if: ${{ matrix.os == 'self-hosted' }}
       name: Build wheels (self-hosted ppc64le)
       run: |
-        python3 -m pip install setuptools cibuildwheel psutil librt
+        python3 -m pip install setuptools cibuildwheel
         python3 -m cibuildwheel --output-dir wheelhouse
       env:
         CIBW_BUILD_VERBOSITY: 1
         CIBW_BUILD: ${{ matrix.python }}-*
         CIBW_ARCHS: ${{ matrix.cibw_arch }}
+        CIBW_BEFORE_BUILD: "pip install 'setuptools<69' wheel"
         CIBW_BUILD_FRONTEND: "build"
         CIBW_ENVIRONMENT: "PIP_NO_BUILD_ISOLATION=0"
+        CIBW_BEFORE_TEST: "pip install 'setuptools<69' wheel"
 
     - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
       with:
