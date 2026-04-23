@@ -99,6 +99,20 @@ jobs:
             cibw_arch: x86_64
           - os: ubuntu-22.04-arm
             cibw_arch: universal2
+          - os: ubuntu-latest
+            cibw_arch: ppc64le
+          - os: macos-latest
+            cibw_arch: ppc64le
+          - os: ubuntu-22.04-arm
+            cibw_arch: ppc64le
+          - os: self-hosted
+            cibw_arch: x86_64
+          - os: self-hosted
+            cibw_arch: aarch64
+          - os: self-hosted
+            cibw_arch: universal2
+
+
     defaults:
       run:
         shell: bash
