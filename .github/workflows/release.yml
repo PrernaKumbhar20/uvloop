@@ -198,7 +198,7 @@ jobs:
       uses: elprans/gh-action-create-release@master
     #  env:
     #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #  with:
+      with:
         tag_name: v${{ steps.relver.outputs.version }}
         release_name: v${{ steps.relver.outputs.version }}
         target: ${{ github.event.pull_request.base.ref }}
