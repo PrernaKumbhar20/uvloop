@@ -194,16 +194,16 @@ jobs:
         gpg_key_id: "5C468778062D87BF!"
     #    tag_name: v${{ steps.relver.outputs.version }}
         
-    - name: Publish Github Release
-      uses: elprans/gh-action-create-release@master
+   # - name: Publish Github Release
+   #   uses: elprans/gh-action-create-release@master
     #  env:
     #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ steps.relver.outputs.version }}
-        release_name: v${{ steps.relver.outputs.version }}
-        target: ${{ github.event.pull_request.base.ref }}
-        body: ${{ github.event.pull_request.body }}
-        draft: false
+    #  with:
+    #    tag_name: v${{ steps.relver.outputs.version }}
+    #    release_name: v${{ steps.relver.outputs.version }}
+    #    target: ${{ github.event.pull_request.base.ref }}
+    #    body: ${{ github.event.pull_request.body }}
+    #    draft: false
 
     - run: |
         ls -al dist/
