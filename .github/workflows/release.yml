@@ -178,12 +178,12 @@ jobs:
         merge-multiple: true
         path: dist/
 
-    - name: Extract Release Version
-      id: relver
-      run: |
-        set -e
-        echo version=$(cat dist/VERSION) >> $GITHUB_OUTPUT
-        rm dist/VERSION
+    #- name: Extract Release Version
+    #  id: relver
+    #  run: |
+    #    set -e
+    #    echo version=$(cat dist/VERSION) >> $GITHUB_OUTPUT
+    #S    rm dist/VERSION
 
     - name: Merge and tag the PR
       uses: edgedb/action-release/merge@bae6b9134e872166b43d218dd79397c851c41c9a
