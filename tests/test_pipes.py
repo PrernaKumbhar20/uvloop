@@ -1,7 +1,9 @@
 import asyncio
 import io
 import os
+import platform
 import socket
+import unittest
 
 from uvloop import _testbase as tb
 
@@ -248,6 +250,10 @@ class _BasePipeTest:
         self.loop.run_until_complete(proto.done)
         self.assertEqual('CLOSED', proto.state)
 
+    @unittest.skipIf(
+        platform.machine() == 'ppc64le',
+        'ppc64le has larger pipe buffers, test does not fill buffer'
+    )
     def test_write_buffer_full(self):
         rpipe, wpipe = os.pipe()
         pipeobj = io.open(wpipe, 'wb', 1024)
