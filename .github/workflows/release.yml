@@ -155,6 +155,7 @@ jobs:
         CIBW_BUILD_VERBOSITY: 1
         CIBW_BUILD: ${{ matrix.python }}-*
         CIBW_ARCHS: ${{ matrix.cibw_arch }}
+        CIBW_SKIP: "*-musllinux_*"
 
     - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
       with:
