@@ -193,7 +193,6 @@ jobs:
         gpg_key: ${{ secrets.RELEASE_BOT_GPG_KEY }}
         gpg_key_id: "5C468778062D87BF!"
         tag_name: v${{ steps.relver.outputs.version }}
-
     - name: Publish Github Release
       uses: elprans/gh-action-create-release@master
     #  env:
