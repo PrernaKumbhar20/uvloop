@@ -188,7 +188,7 @@ jobs:
     - name: Merge and tag the PR
       uses: edgedb/action-release/merge@bae6b9134e872166b43d218dd79397c851c41c9a
       with:
-        github_token: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
+    #    github_token: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
         ssh_key: ${{ secrets.RELEASE_BOT_SSH_KEY }}
         gpg_key: ${{ secrets.RELEASE_BOT_GPG_KEY }}
         gpg_key_id: "5C468778062D87BF!"
@@ -198,7 +198,7 @@ jobs:
       uses: elprans/gh-action-create-release@master
     #  env:
     #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
+    #  with:
         tag_name: v${{ steps.relver.outputs.version }}
         release_name: v${{ steps.relver.outputs.version }}
         target: ${{ github.event.pull_request.base.ref }}
