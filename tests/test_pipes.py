@@ -249,11 +249,10 @@ class _BasePipeTest:
         proto.transport.close()
         self.loop.run_until_complete(proto.done)
         self.assertEqual('CLOSED', proto.state)
-    
     @unittest.skipIf(
         platform.machine() == 'ppc64le',
         'https://github.com/MagicStack/uvloop/issues/576')
-        
+
     def test_write_buffer_full(self):
         rpipe, wpipe = os.pipe()
         pipeobj = io.open(wpipe, 'wb', 1024)
