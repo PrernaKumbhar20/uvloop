@@ -249,6 +249,7 @@ class _BasePipeTest:
         proto.transport.close()
         self.loop.run_until_complete(proto.done)
         self.assertEqual('CLOSED', proto.state)
+        
     @unittest.skipIf(
         platform.machine() == 'ppc64le',
         'ppc64le has larger pipe buffers, test does not fill buffer'
