@@ -2,6 +2,8 @@ import asyncio
 import io
 import os
 import socket
+import unittest
+import platform
 
 from uvloop import _testbase as tb
 
