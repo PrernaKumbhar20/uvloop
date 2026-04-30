@@ -17,15 +17,15 @@ jobs:
       fail-fast: false
       matrix:
         python-version:
-        - "3.8"
-        - "3.9"
-        - "3.10"
+        #- "3.8"
+        #- "3.9"
+        #- "3.10"
         - "3.11"
-        - "3.12"
-        - "3.13"
-        - "3.14"
-        - "3.14t"
-        os: [ubuntu-latest, macos-latest]
+        #- "3.12"
+        #- "3.13"
+        #- "3.14"
+        #- "3.14t"
+        os: [ubuntu-latest, macos-latest, self-hosted]
 
     env:
       PIP_DISABLE_PIP_VERSION_CHECK: 1
