@@ -3,8 +3,9 @@ name: Tests
 on:
   push:
     branches:
-      - master
-      - ci
+      - 1
+      #- master
+      #- ci
   pull_request:
     branches:
       - master
