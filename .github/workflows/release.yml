@@ -130,7 +130,7 @@ jobs:
       run: |
         brew install gnu-sed libtool autoconf automake
 
-    - if: ${{ matrix.os != 'self-hosted' }}
+    - if: ${{ matrix.cibw != 'ppc64le' }}
       uses: pypa/cibuildwheel@7c619efba910c04005a835b110b057fc28fd6e93  # v3.2.0
       env:
         CIBW_BUILD_VERBOSITY: 1
@@ -138,15 +138,15 @@ jobs:
         CIBW_ARCHS: ${{ matrix.cibw_arch }}
         CIBW_TEST_SKIP: "*universal2:arm64"
 
-    - if: ${{ matrix.os == 'self-hosted' }}
-      name: Set up Python (self-hosted)
+    - if: ${{ matrix.cibw_arch == 'ppc64le' }}
+      name: Set up Python (ppc64le)
       uses: IBM/setup-python-pz@4ca38bfac8eac147e9c7aad9ab246f68655afb36
       with:
         python-version: 3.11
         architecture: ppc64le
     
-    - if: ${{ matrix.os == 'self-hosted' }}
-      name: Build wheels (self-hosted ppc64le)
+    - if: ${{ matrix.cibw_arch == 'ppc64le' }}
+      name: Build wheels (ppc64le)
       run: |
         python3 -m pip install setuptools cibuildwheel cryptography
         python3 -m cibuildwheel --output-dir wheelhouse
